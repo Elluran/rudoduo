@@ -1,0 +1,30 @@
+device = "cuda:0"
+pretrained_model_name = "cointegrated/rubert-tiny2"
+
+[mlflow]
+experiment_name = "clean labels"
+run_name = "with dynamic tokenizer"
+tag = """
+"""
+
+[optimizer]
+lr = 2e-3
+weight_decay = 1e-2
+eps = 1e-8
+
+[scheduler]
+step_size = 1
+gamma = 0.83
+
+[model]
+hidden_dropout_prob = 0.1
+last_layer_dropout = 0.1
+
+[tokenizer]
+max_tokens_per_column = 200  # 2 of those for CLS and SEP
+max_columns = 20
+max_tokens = 200  # per table
+
+[trainer]
+epochs = 20
+grad_acum_step = 4

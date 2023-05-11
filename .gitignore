@@ -1,0 +1,15 @@
+broken-tokenizer
+checkpoints
+rubert-base-cased
+sbert_large_nlu_ru
+venv
+__pycache__
+.idea
+logs
+plugins
+data
+.airflow
+.env
+tmp
+mlruns
+.vscode
