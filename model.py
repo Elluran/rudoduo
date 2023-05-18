@@ -1,17 +1,18 @@
-from transformers import AutoModel
+from transformers import AutoModel, PreTrainedModel
+from transformers.models.bert.configuration_bert import BertConfig
 import torch
 from torch import nn
 
-from transformers import PreTrainedModel
-
 
 class Model(PreTrainedModel):
+    config_class = BertConfig
+
     def __init__(
         self,
         config,
-        labels_number,
-        pretrained_model_name,
-        tokenizer,
+        labels_number=138,
+        pretrained_model_name="cointegrated/rubert-tiny2",
+        tokenizer=None,
         last_layer_dropout=0.2,
     ):
         super().__init__(config)

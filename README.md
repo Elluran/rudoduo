@@ -1,4 +1,18 @@
-# Instruction
+# Use model
+
+```Python
+   from transformers import AutoTokenizer
+   from model import Model
+
+   tokenizer = AutoTokenizer.from_pretrained("Elluran/rudoduo")
+   model = Model.from_pretrained(
+      "Elluran/rudoduo",
+      tokenizer=tokenizer
+   )
+   model.eval()
+```
+
+# Deploy data
 1. Clone repo and create .env file using the next example as a template.
     ##### example of .env
     ```BASH
