@@ -4,8 +4,7 @@ from sklearn.utils import shuffle
 import pandas as pd
 import numpy as np
 
-import utils
-from tokens_extractor import extract_tokens
+from rudoduo.tokens_extractor import extract_tokens
 
 
 class Tables(Dataset):
@@ -44,7 +43,8 @@ class Tables(Dataset):
     def __getitem__(self, idx):
         df = pd.read_csv(self.paths[idx], sep=self.sep)
 
-        labels = utils.get_labels(self.paths[idx])
+        with open(self.paths[idx]) as file:
+            labels = file.readline().replace("\n", "").lower().split(self.sep)
 
         assert len(labels) == len(df.columns)
 
@@ -59,7 +59,6 @@ class Tables(Dataset):
         table_tokens = extract_tokens(
             df,
             self.tokenizer,
-            len(labels),
             self.max_tokens,
             self.max_columns,
             self.max_tokens_per_column,

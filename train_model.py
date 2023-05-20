@@ -1,4 +1,3 @@
-from pathlib import Path
 import gc
 
 import torch
@@ -12,7 +11,7 @@ import mlflow
 from transformers import AutoTokenizer
 
 from config import get_config
-from model import Model
+from rudoduo.model import Model
 from train import Trainer
 import dataset
 
@@ -23,7 +22,7 @@ def main():
     pretrained_model_name = config.pretrained_model_name
 
 
-    allowed_labels = pd.read_csv("./data/labels.csv")["0"].to_list()
+    allowed_labels = pd.read_csv("./rudoduo/labels.csv")["0"].to_list()
 
     labels_encoder = preprocessing.LabelEncoder()
     labels_encoder.fit(allowed_labels)
@@ -121,7 +120,6 @@ def main():
         )
         model = Model(
             bert_config,
-            labels_number=len(allowed_labels),
             pretrained_model_name=pretrained_model_name,
             tokenizer=tokenizer,
             last_layer_dropout=last_layer_dropout,
