@@ -1,6 +1,12 @@
 # Use model
 
-## Load model
+First, copy rododuo directory from this repo (not the repo itself) to your project. Second, install these packages to your environment: 
+
+```BASH
+pip install torch transformers pandas
+```
+
+## Loading model
 
 ```Python
 from transformers import AutoTokenizer
@@ -15,7 +21,7 @@ model = Model.from_pretrained(
 model.eval()
 ```
 
-## Get predictions
+## Getting predictions
 
 ```Python
 import pandas as pd
